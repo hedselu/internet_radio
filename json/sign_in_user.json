@@ -1,0 +1,7 @@
+{
+	"user":{
+		"email":"sample@gmail.com",
+		"password":"password123",
+		"remember_me":1
+	}
+}

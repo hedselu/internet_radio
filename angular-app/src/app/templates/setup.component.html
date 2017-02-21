@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="well row">
+        <h2 class="text-center">Setup form</h2>
+        <h4 class="text-center">Please provide your channel name</h4>
+        <form>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-4 centered">
+                        <label>Channel name:</label>
+                        <input [(ngModel)]="channelData.name" required name="name" #name="ngModel" [minlength]="3"
+                               [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Name"/>
+                        <div *ngIf="name.errors?.required && name.touched" class="alert alert-danger">
+                            Channel name is required.
+                        </div>
+
+                        <div *ngIf="name.errors?.minlength && name.dirty" class="alert alert-danger">
+                            Channel should be minimum 3 characters length.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4 col-md-offset-4 centered">
+                    <button class="btn btn-default" (click)="create()" [disabled]="name.invalid">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

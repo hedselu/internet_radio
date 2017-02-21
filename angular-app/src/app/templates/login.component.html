@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="well row">
+        <h2 class="text-center">Login form</h2>
+        <form>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-4 centered">
+                        <label>Email:</label>
+                        <input [(ngModel)]="userCredentials.email" name="email" required
+                               email="ngModel" [minlength]="8" email
+                               [ngModelOptions]="{standalone: true}" class="form-control"
+                               placeholder="Email" type="email" #email="ngModel"/>
+                        <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">
+                            Email is required.
+                        </div>
+                        <div *ngIf="email.dirty">
+                            <div *ngIf="email.errors?.minlength" class="alert alert-danger">
+                                Email should be minimum 8 characters length.
+                            </div>
+                            <div *ngIf="email.errors?.email" class="alert alert-danger">
+                                Provided data is not an email.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-4 centered">
+                        <label>Password:</label>
+                        <input [(ngModel)]="userCredentials.password" name="password" required
+                               password="ngModel" [minlength]="8"
+                               [ngModelOptions]="{standalone: true}" class="form-control"
+                               placeholder="Password" type="password" #password="ngModel"/>
+                        <div *ngIf="password.errors?.required && password.touched" class="alert alert-danger">
+                            Password is required.
+                        </div>
+                        <div *ngIf="password.errors?.minlength && password.dirty" class="alert alert-danger">
+                            Password should be minimum 8 characters length.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-4 col-md-offset-4 centered">
+                    <button class="btn btn-default" (click)="create()"
+                            [disabled]="email.invalid ||
+                                        password.invalid">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

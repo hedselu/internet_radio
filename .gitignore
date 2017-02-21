@@ -1,0 +1,7 @@
+.idea/**/*
+log/**/*
+angular-app/node_modules/**/*
+angular-app/**/*.js
+angular-app/**/*.js.map
+config/database.yml
+public/uploads/**/*

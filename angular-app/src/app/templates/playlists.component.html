@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="well col-lg-3">
+            <h2>Create Playlist</h2>
+            <label>name: </label>
+            <input [(ngModel)]="name" placeholder="Name" class="form-control"/><br>
+            <label>description: </label>
+            <textarea ref-textarea [(ngModel)]="description" placeholder="Description" rows="5" class="form-control"></textarea><br>
+            <button (click)="create()" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="col-lg-9">
+            <accordion [closeOthers]=true>
+                <accordion-group *ngFor="let playlist of playlists" (click)="select(playlist)" [heading]="playlist.name">
+                    <div *ngIf="selectedPlaylist">
+                        <h5>{{selectedPlaylist.description}}</h5>
+                        <div class="col-lg-12 list-group">
+                            <li *ngFor="let song of selectedPlaylist.songs" class="list-group-item">
+                                {{song.author}} - {{song.title}}
+                            </li>
+                        </div>
+                        <button (click)="manageSongsOfSelected()" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-pencil"></span>Manage Songs
+                        </button>
+                        <button (click)="destroy()" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-trash"></span>Remove
+                        </button>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+
+        <modal #songsAddition size="md">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Select songs to add</h4>
+            </modal-header>
+            <modal-body>
+                <div *ngIf="selectedPlaylist">
+                    <table width="80%">
+                        <thead>
+                        <tr>
+                            <th width="75%">Name</th>
+                            <th>Apply</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let song of songs">
+                            <td>{{song.title}} - {{song.author}}</td>
+                            <td>
+                                <input type="checkbox"
+                                       [checked]="selectedContainsSong(song.id)"
+                                       (change)="$event.target.checked? (selectedPlaylistSongsIds.push(song.id)) : (removeSongFromSelected(song.id))"
+                                >
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-primary" (click)="update()">Ok</button>
+            </modal-footer>
+        </modal>
+    </div>
+</div>
