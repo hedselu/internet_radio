@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: sharoice_development
+  pool: 5
+  username: internet_radio
+  password: winterfresh1
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: sharoice_test
+  pool: 5
+  username: internet_radio
+  password: winterfresh1

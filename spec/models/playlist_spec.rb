@@ -1,2 +1,0 @@
-describe Playlist do
-end
